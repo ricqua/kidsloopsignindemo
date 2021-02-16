@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import icon from "../images/kidsloop_min_logo.svg";
-import "./styles.css";
+import "./SignIn.css";
 
 export default function SignInComponent() {
   const [userID, setUserID] = useState("");
@@ -51,6 +51,7 @@ export default function SignInComponent() {
             value={userID}
             type="text"
             onChange={handleChange}
+            required
           />
           <input
             className="inputField"
@@ -59,6 +60,7 @@ export default function SignInComponent() {
             value={password}
             type="password"
             onChange={handleChange}
+            required
           />
           <div>
             <a

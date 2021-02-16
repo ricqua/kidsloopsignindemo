@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./styles.css";
+import "./Footer.css";
 import dummyContent from "./dummyContent.js";
 import Popup from "./Popup";
 import { Icon, InlineIcon } from "@iconify/react";
 import roundBrightness7 from "@iconify-icons/ic/round-brightness-7";
 
-export default function FooterComponent() {
+export default function Footer() {
   // const [helpPopup, setHelpPopup] = useState(false);
   // const [privacyPopup, setPrivacyPopup] = useState(false);
   // const [termsPopup, setTermsPopup] = useState(false);

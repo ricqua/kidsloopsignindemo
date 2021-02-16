@@ -1,0 +1,58 @@
+.signUpComponent {
+  /* border: solid black 1px; */
+  /* background: green; */
+  /* x-offset, y-offset, blur-radius, spread-radius, color
+  2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
+  padding: 40px 40px 50px 40px;
+  /* max-width: 640px; */
+}
+.header {
+  font-size: 22pt;
+  padding: 30px 0px;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.signUpForm > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 40px 0;
+}
+
+.inputField {
+  border: solid rgba(220, 220, 220, 1) 1px;
+  font-size: 12pt;
+  padding: 18px;
+  margin: 5px 0px;
+  border-radius: 15px;
+  min-width: 350px;
+}
+
+.submitButton {
+  background: rgba(14, 120, 213, 1);
+  border: 0px;
+  color: white;
+  font-size: 12pt;
+  margin: 5px 0px;
+  padding: 10px 30px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background: rgb(12, 100, 177);
+}
+
+.label {
+  color: rgba(12, 54, 128, 1);
+  cursor: pointer;
+  text-decoration: none;
+  /* font-weight: 300; */
+  padding: 0 0 0 3px;
+}
