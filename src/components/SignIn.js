@@ -45,14 +45,14 @@ function SignIn() {
         {error && <div className="error">{error}</div>}
         <form className="signInForm" onSubmit={handleSubmit}>
           <input
-            className="inputField"
+            className="inputField1"
             ref={userIDRef}
             placeholder="Email or Phone *"
             type="text"
             required
           />
           <input
-            className="inputField"
+            className="inputField1"
             ref={passwordRef}
             placeholder="Password *"
             type="password"

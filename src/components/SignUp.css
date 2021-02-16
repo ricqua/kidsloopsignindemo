@@ -1,8 +1,5 @@
 .signUpComponent {
   border-radius: 20px;
-  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
-  padding: 40px 40px 50px 40px;
-  /* max-width: 640px; */
 }
 .header {
   font-size: 22pt;
@@ -27,7 +24,6 @@
   padding: 18px;
   margin: 5px 0px;
   border-radius: 15px;
-  min-width: 350px;
 }
 
 .submitButton {
@@ -49,11 +45,23 @@
   color: rgba(12, 54, 128, 1);
   cursor: pointer;
   text-decoration: none;
-  /* font-weight: 300; */
   padding: 0 0 0 3px;
+  margin: 0px 50px 0px 0px;
 }
 
 .error {
   color: red;
   font-style: italic;
+  max-width: 80vw;
+}
+
+@media only screen and (min-width: 768px) {
+  .signUpComponent {
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
+    padding: 40px 40px 50px 40px;
+  }
+
+  .error {
+    max-width: 350px;
+  }
 }
