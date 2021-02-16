@@ -1,41 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import icon from "../images/kidsloop_min_logo.svg";
+import { useAuth } from "../contexts/AuthContext";
 import "./SignIn.css";
+import Footer from "./Footer";
+import { Link, useHistory } from "react-router-dom";
+import Loading from "./Loading";
 
-export default function SignInComponent() {
-  const [userID, setUserID] = useState("");
-  const [password, setPassword] = useState("");
-  const [usersDB, setUsersDB] = useState(
-    {
-      userID: "Susan",
-      password: "123",
-    },
-    {
-      userID: "James",
-      password: "456",
-    }
-  );
+function SignIn() {
+  const userIDRef = useRef();
+  const passwordRef = useRef();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { signin, currentUser } = useAuth();
+  const history = useHistory();
 
-  function handleChange(e) {
+  useEffect(() => {
+    userIDRef.current.focus();
+  }, []);
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    switch (e.target.name) {
-      case "userID":
-        setUserID(e.target.value);
-        break;
-      case "password":
-        setPassword(e.target.value);
-        break;
-      default:
-    }
-  }
 
-  function onSubmit(e) {
-    // e.preventDefault();
-    if (false) {
-      alert(`Welcome back ${userID}`);
-    } else {
-      alert("Email, phone number or/and password are not recognised.");
+    try {
+      setError("");
+      setLoading(true);
+      await signin(userIDRef.current.value, passwordRef.current.value);
+      history.push("/");
+    } catch {
+      setError(
+        "* Failed to sign in.  Please ensure your sign in credentials are correct."
+      );
     }
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
   }
 
   return (
@@ -43,48 +41,45 @@ export default function SignInComponent() {
       <div className="signInComponent">
         <img src={icon} alt="KidsLoop icon" width="80px" />
         <p className="header">Sign In</p>
-        <form className="signInForm">
+        {/* {currentUser && currentUser.email} */}
+        {error && <div className="error">{error}</div>}
+        <form className="signInForm" onSubmit={handleSubmit}>
           <input
             className="inputField"
-            name="userID"
+            ref={userIDRef}
             placeholder="Email or Phone *"
-            value={userID}
             type="text"
-            onChange={handleChange}
             required
           />
           <input
             className="inputField"
-            name="password"
+            ref={passwordRef}
             placeholder="Password *"
-            value={password}
             type="password"
-            onChange={handleChange}
             required
           />
           <div>
-            <a
+            <p
               className="label"
-              href="https://www.google.com/"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => {
+                alert("Function still in development");
+              }}
             >
               Forgot Password?
-            </a>
-            <button type="submit" className="submitButton" onClick={onSubmit}>
+            </p>
+            <button type="submit" className="submitButton">
               Sign In
             </button>
+            {loading ? <Loading /> : ""}
           </div>
         </form>
-        <a
-          className="label"
-          href="https://www.google.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link className="label" to="/signup">
           Create an account
-        </a>
+        </Link>
       </div>
+      <Footer />
     </React.Fragment>
   );
 }
+
+export default SignIn;

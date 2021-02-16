@@ -2,14 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import icon from "../images/kidsloop_min_logo.svg";
 import { useAuth } from "../contexts/AuthContext";
 import "./SignUp.css";
+import Footer from "./Footer";
+import { Link, useHistory } from "react-router-dom";
+import Loading from "./Loading";
 
 function SignUp() {
   const userIDRef = useRef(); //{current: 0}
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup } = useAuth();
+  const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     userIDRef.current.focus();
@@ -26,12 +30,15 @@ function SignUp() {
       setError("");
       setLoading(true);
       await signup(userIDRef.current.value, passwordRef.current.value);
+      history.push("/signin");
     } catch {
-      setError("Failed to create an account");
+      setError(
+        "* Failed to create an account. Please ensure you use a valid email address and select a password longer than 5 characters."
+      );
     }
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1500);
   }
 
   return (
@@ -39,7 +46,8 @@ function SignUp() {
       <div className="signUpComponent">
         <img src={icon} alt="KidsLoop icon" width="80px" />
         <p className="header">Sign Up</p>
-        {error && <p>{error}</p>}
+        {/* {currentUser && currentUser.email} */}
+        {error && <p className="error">{error}</p>}
         <form className="signUpForm" onSubmit={handleSubmit}>
           <input
             className="inputField"
@@ -69,17 +77,14 @@ function SignUp() {
             <button type="submit" className="submitButton" disabled={loading}>
               Sign Up
             </button>
-            {loading ? <p>Loading</p> : ""}
-            <button
-              onClick={() => {
-                userIDRef.current.focus();
-              }}
-            >
-              Focus
-            </button>
+            {loading ? <Loading /> : ""}
           </div>
         </form>
+        <Link className="label" to="/signin">
+          Already have an account? Sign In
+        </Link>
       </div>
+      <Footer />
     </React.Fragment>
   );
 }
