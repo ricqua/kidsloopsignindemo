@@ -15,9 +15,9 @@ function SignUp() {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  useEffect(() => {
-    userIDRef.current.focus();
-  }, []);
+  // useEffect(() => {
+  //   userIDRef.current.focus();
+  // }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();

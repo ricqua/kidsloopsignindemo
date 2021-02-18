@@ -14,9 +14,9 @@ function SignIn() {
   const { signin, currentUser } = useAuth();
   const history = useHistory();
 
-  useEffect(() => {
-    userIDRef.current.focus();
-  }, []);
+  // useEffect(() => {
+  //   userIDRef.current.focus();
+  // }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
